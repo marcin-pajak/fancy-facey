@@ -10,7 +10,10 @@ let stream: MediaStream;
 /**
  * Get HTML Elements for video and output
  */
-export const loadVideoOutput = () => {
+export const loadVideoOutput = (): {
+  video: HTMLVideoElement;
+  canvas: HTMLCanvasElement;
+} => {
   const canvas = <HTMLCanvasElement>document.getElementById("js-output");
   const video = <HTMLVideoElement>document.getElementById("js-video");
   return { video, canvas };
@@ -44,7 +47,7 @@ const setVideoOutputSettings = async (
   video: HTMLVideoElement,
   output: HTMLCanvasElement,
   stream: MediaStream
-) => {
+): Promise<object> => {
   const track = stream.getVideoTracks()[0];
   const settings = track.getSettings();
   const videoHeight = Math.min(settings.height, window.innerHeight);
@@ -58,7 +61,7 @@ const setVideoOutputSettings = async (
   return new Promise(resolve => {
     video.onloadedmetadata = () => {
       video.play();
-      resolve();
+      return resolve(video);
     };
   });
 };

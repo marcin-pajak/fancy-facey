@@ -60,18 +60,18 @@ export const getRelevantKeypoints = (
   currentEmoji: Emoji,
   keypoints: Array<Keypoint>,
   minConfidence: number
-) =>
+): Keypoint[] =>
   keypoints
     .filter(keypoint => currentEmoji.parts.includes(keypoint.part))
     .filter(keypoint => keypoint.score > minConfidence);
 
 // Draw relevant emojis for each person
 export function drawEmojis(
-  poses,
-  currentEmoji,
-  minPoseConfidence,
-  minPartConfidence,
-  ctx
+  poses: any[],
+  currentEmoji: Emoji,
+  minPoseConfidence: number,
+  minPartConfidence: number,
+  ctx: CanvasRenderingContext2D
 ) {
   poses
     .filter(pose => pose.score >= minPoseConfidence)

@@ -19,6 +19,6 @@ export const makeHidden = (node: HTMLElement) => {
  * @param template
  * @param element
  */
-export const render = (template, element) => {
+export const render = (template: string, element: HTMLElement) => {
   element.innerHTML += template;
 };

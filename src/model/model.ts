@@ -5,7 +5,7 @@ import { ModelState } from "./types";
 
 let state: ModelState;
 
-const isMobileDevice = isMobile(navigator.userAgent);
+const isMobileDevice: boolean = isMobile(navigator.userAgent);
 const mobileNetArchitecture: MobileNetMultiplier = isMobileDevice ? 0.5 : 0.75;
 
 /**
@@ -38,4 +38,4 @@ export const configureModel = (net: PoseNet) => {
 /**
  * Return current state
  */
-export const getModel = () => state;
+export const getModel = (): ModelState => state;
