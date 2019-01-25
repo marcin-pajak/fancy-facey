@@ -1,0 +1,35 @@
+{
+  "name": "fancy-facey",
+  "version": "1.0.0",
+  "main": "dist/index.html",
+  "repository": "git@github.com:slidek/fancy-facey.git",
+  "author": "Marcin Pajak",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">10.0.0"
+  },
+  "scripts": {
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html",
+    "tdd": "jest --coverage --watchAll",
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.13",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.6.0",
+    "jest-canvas-mock": "^1.1.1-beta.1",
+    "parcel-bundler": "^1.11.0",
+    "parcel-plugin-sw-precache": "^1.0.3",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "@tensorflow-models/posenet": "^0.2.3",
+    "@tensorflow/tfjs": "^0.13.0"
+  },
+  "sw-precache": {
+    "maximumFileSizeToCacheInBytes": 10485760
+  }
+}
