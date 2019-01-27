@@ -53,8 +53,9 @@ const Init = async (): Promise<void> => {
   } catch (error) {
     handleError(error);
   }
+
+  // Unsubscribe from events
+  document.removeEventListener("DOMContentLoaded", Init);
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  Init();
-});
+document.addEventListener("DOMContentLoaded", Init);
