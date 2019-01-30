@@ -28,6 +28,14 @@ export const shouldAllowSwitchingCamera = (camerasQty: number): boolean =>
   camerasQty > 1;
 
 /**
+ * Is camera recognised as one on the back of the device?
+ * @param capabilities
+ */
+export const isBackCamera = (capabilities: MediaTrackCapabilities): boolean => {
+  return capabilities && capabilities.facingMode.includes("environment");
+};
+
+/**
  * Return currently selected camera id
  */
 export const getCurrentCameraId = (): string =>

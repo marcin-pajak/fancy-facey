@@ -1,11 +1,12 @@
-import { getContstraints } from "../cameras/cameras";
-import { getModel } from "../model/model";
-import { getCurrentEmoji } from "../emojis/emojis";
+import { getContstraints, isBackCamera } from "../cameras";
+import { getModel } from "../model";
+import { getCurrentEmoji } from "../emojis";
 import { drawEmojis, drawFrame } from "../utils/drawingService";
 import { makeHidden, makeVisible } from "../utils/dom";
 
 let animationId: number;
 let stream: MediaStream;
+let shouldFlipHorizontal: boolean;
 
 /**
  * Get HTML Elements for video and output
@@ -52,6 +53,7 @@ const setVideoOutputSettings = async (
   const settings = track.getSettings();
   const videoHeight = Math.min(settings.height, window.innerHeight);
   const videoWidth = Math.min(settings.width, window.innerWidth);
+  shouldFlipHorizontal = !isBackCamera(track.getCapabilities());
   video.width = videoWidth;
   video.height = videoHeight;
   output.width = videoWidth;
@@ -76,18 +78,15 @@ const startCanvasDrawing = (
   output: HTMLCanvasElement
 ) => {
   const ctx: CanvasRenderingContext2D = output.getContext("2d");
-  // since images are being fed from a webcam
-  const flipHorizontal = true;
   const model = getModel();
 
   async function poseDetectionFrame() {
     const currentEmoji = getCurrentEmoji();
     const { minPoseConfidence, minPartConfidence } = model.config;
-
     const poses = await model.net.estimateMultiplePoses(
       video,
       model.config.imageScaleFactor,
-      flipHorizontal,
+      shouldFlipHorizontal,
       model.config.outputStride,
       model.config.maxPoseDetections,
       model.config.minPartConfidence,
@@ -95,7 +94,7 @@ const startCanvasDrawing = (
     );
 
     // Draw Video Frame
-    drawFrame(ctx, video);
+    drawFrame(ctx, video, shouldFlipHorizontal);
 
     // Draw relevant emojis for each person
     drawEmojis(poses, currentEmoji, minPoseConfidence, minPartConfidence, ctx);

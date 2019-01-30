@@ -4,7 +4,8 @@ import {
   getContstraints,
   getCurrentCameraId,
   shouldAllowSwitchingCamera,
-  toggleCamera
+  toggleCamera,
+  isBackCamera
 } from "./index";
 
 jest.mock("../videoOutput/videoOutput", () => ({
@@ -30,6 +31,13 @@ describe("Camera Module", () => {
 
   test("should not allow switching camera", () => {
     expect(shouldAllowSwitchingCamera(1)).toBe(false);
+  });
+
+  test("should recognise back camera", () => {
+    const capabilities: MediaTrackCapabilities = {
+      facingMode: "environment"
+    };
+    expect(isBackCamera(capabilities)).toBe(true);
   });
 
   test("should get constraints for current camera", () => {

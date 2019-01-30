@@ -38,14 +38,17 @@ function drawKeypoints(
  */
 export function drawFrame(
   ctx: CanvasRenderingContext2D,
-  video: HTMLVideoElement
+  video: HTMLVideoElement,
+  shouldFlipHorizontal: boolean
 ): void {
   const { width, height } = video;
 
   ctx.clearRect(0, 0, width, height);
   ctx.save();
-  ctx.scale(-1, 1);
-  ctx.translate(-width, 0);
+  if (shouldFlipHorizontal) {
+    ctx.scale(-1, 1);
+    ctx.translate(-width, 0);
+  }
   ctx.drawImage(video, 0, 0, width, height);
   ctx.restore();
 }
@@ -72,7 +75,7 @@ export function drawEmojis(
   minPoseConfidence: number,
   minPartConfidence: number,
   ctx: CanvasRenderingContext2D
-) {
+): void {
   poses
     .filter(pose => pose.score >= minPoseConfidence)
     .map(pose =>
