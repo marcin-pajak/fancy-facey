@@ -52,7 +52,6 @@ $ ./release.sh
 ## Possible improvements
 
 - Move frame transformations to a Web Worker using OffscreenCanvas
-- Don't flip horizontally camera that doesn't face user
 - Don't create emoji HTMLImageElement until it's used, especially when there are more emojis than now
 - Move emojis definition to JSON list
 - Create Docker image for local development
