@@ -13,7 +13,7 @@ var filesToCache = [
   "./index.js",
   "./styles.css",
   "./images/logo.png",
-  "./images/camera-solid.svg",
+  "./images/reverse-camera.svg",
   "./emojis/cherries.png",
   "./emojis/dollar.png",
   "./emojis/rudolph.png"

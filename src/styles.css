@@ -50,7 +50,7 @@ button {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   color: #14509f;
   display: inline-block;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .Button--primary:hover,
@@ -121,9 +121,9 @@ button {
 }
 
 .Main-cameraIcon {
-  height: 21px;
+  height: 32px;
   vertical-align: middle;
-  width: 21px;
+  width: 32px;
 }
 
 .is-hidden {

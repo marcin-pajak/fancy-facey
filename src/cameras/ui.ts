@@ -1,6 +1,6 @@
 import { render } from "../utils/dom";
 import { shouldAllowSwitchingCamera, toggleCamera } from "./cameras";
-import CameraIcon from "../images/camera-solid.svg";
+import CameraIcon from "../images/reverse-camera.svg";
 
 /**
  * Camera Switch UI Component
